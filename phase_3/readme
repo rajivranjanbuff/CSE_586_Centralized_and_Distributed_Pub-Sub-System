@@ -1,0 +1,54 @@
+1) Create a docker subnet: use the following command mentioned below:
+
+docker network create --driver=bridge --set=192.168.2.0/24 --gateway=192.168.2.10 new_subnet
+
+2) check if it got created or not: 
+docker network inspect new_subnet
+
+Server set up:
+3) build the image and run it
+ docker build -t peiworld/csci652:latest .
+ docker run peiworld/csci652:latest
+ docker run --net new_subnet --ip 192.168.2.1 -it peiworld/csci652:latest
+
+4) Get the Docker container id and copy the following files to that docker using it's id:
+copy file to container (example id used here is 1d7ab2dd042a)
+ docker cp EventManager.java 1d7ab2dd042a:/;docker cp EventManagerThread.java 1d7ab2dd042a:/;docker cp Topic.java 1d7ab2dd042a:/;docker cp SharedData.java 1d7ab2dd042a:/;docker cp Event.java 1d7ab2dd042a:/
+
+5) run following java files on docker container 
+  
+javac EventManager.java 
+java EventManager
+
+
+Now the server is ready to wait for connections
+
+
+6) Now we start 2(atleast) pub/sub agents for demonstartion. For every pub/sub agent following has to be repeated:
+Go to new terminal and run the following command.
+
+docker run --net new_subnet --ip 192.168.2.2 -it peiworld/csci652:latest
+
+7) Get the Container_ID from here and then copy the follwoing files to the conatiner using it's ID:
+
+docker cp Client.java 9e42f4cd626e:/; docker cp ConnManagerThread.java 9e42f4cd626e:/;docker cp PubSubAgent.java 9e42f4cd626e:/;docker cp Subscriber.java 9e42f4cd626e:/;docker cp Event.java 9e42f4cd626e:/;docker cp Topic.java 9e42f4cd626e:/
+
+8) Run the following commands on the container:
+
+javac PubSubAgent.java 
+java PubSubAgent 192.168.2.1
+
+
+9) Repeat 6 to 8 for multiple agents but change the IP address 192.168.2.2 to 192.168.2.3 in the following command:
+
+docker run --net new_subnet --ip 192.168.2.2 -it peiworld/csci652:latest
+
+11) Now we have two containers connected to server
+
+12) Go to terminal 1 and then first advertise a topic by pressing 1 and giving the topic name and then press 0 to enter
+
+13) Go to terminal 2 and then subscribe to it by pressing 2 and giving the topic name.
+
+14) Finally go the Terminal 1 and publish a msg on this topic and we wills e that the terminal which was subscribed gets the message.
+
+

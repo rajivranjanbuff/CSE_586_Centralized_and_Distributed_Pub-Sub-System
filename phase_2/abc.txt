@@ -1,0 +1,10 @@
+Dog:husky
+Dog:bulldog
+Tiger:white_tiger
+Fish:tuna
+Fish:shark
+Snake:viper
+Snake:rattle_snake
+Cat:birman
+Tiger:royal_bengal
+Cat:purina

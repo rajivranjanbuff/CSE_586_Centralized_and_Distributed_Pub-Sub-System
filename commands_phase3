@@ -1,0 +1,57 @@
+docker run --net new_subnet --ip 192.168.2.1 -it peiworld/csci652:latest
+/Applications/MAMP/htdocs/phase_3
+
+
+docker network create --driver=bridge --set=192.168.2.0/24 --gateway=192.168.2.10 new_subnet
+
+javac EventManager.java 
+java EventManager
+
+
+javac PubSubAgent.java 
+
+java PubSubAgent 10.182.145.231
+
+docker run --net new_subnet --ip 192.168.2.1 -it peiworld/csci652
+
+
+--how to create a new subnet
+
+docker network create --driver=bridge --set=192.168.2.0/24 --gateway=192.168.2.10 new_subnet
+
+--how to check ip address of subnet 
+docker network inspect new_subnet
+
+
+
+ docker ps
+ docker stop 0ad745506679
+ docker rm 0ad745506679
+
+ docker build -t peiworld/csci652:latest .
+ docker run peiworld/csci652:latest
+ docker run --net new_subnet --ip 192.168.2.1 -it peiworld/csci652:latest
+
+copy file to container
+ docker cp EventManager.java 3adf78020148:/;docker cp EventManagerThread.java 3adf78020148:/;docker cp Topic.java 3adf78020148:/;docker cp SharedData.java 3adf78020148:/;docker cp Event.java 3adf78020148:/
+
+javac EventManager.java 
+java EventManager
+Waiting for request
+
+new terminal
+How to run individual pub sub entities:
+docker run --net new_subnet --ip 192.168.2.2 -it peiworld/csci652:latest
+
+docker cp Client.java 321ef1181933:/; docker cp ConnManagerThread.java 321ef1181933:/;docker cp PubSubAgent.java 321ef1181933:/;docker cp Subscriber.java 321ef1181933:/;docker cp Event.java 321ef1181933:/;docker cp Topic.java 321ef1181933:/
+
+javac PubSubAgent.java 
+java PubSubAgent 192.168.2.1
+
+
+
+
+
+
+
+
